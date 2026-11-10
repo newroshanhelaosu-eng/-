@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>නිෂ්පාදන තොරතුරු සහ භාවිත කරන ආකාරය</title>
+    <style>
+        body {
+            font-family: 'Iskoola Pota', Arial, sans-serif;
+            text-align: center;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .logo {
+            max-height: 50px;
+        }
+        .dropdown {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 60%;
+        }
+        .container {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .preview-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            max-width: 600px;
+            width: 100%;
+            text-align: left;
+        }
+        .preview-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            display: none;
+            margin-bottom: 15px;
+        }
+        .info-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        .section-heading {
+            font-weight: bold;
+            color: #27ae60;
+            margin-top: 15px;
+        }
+        .description {
+            color: #333;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        .qr-section {
+            margin-top: 30px;
+            padding: 15px;
+            background: white;
+            display: inline-block;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .qr-img {
+            width: 130px;
+            height: 130px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. ලෝගෝ එක සහ අයිතම තෝරන Dropdown එක -->
+    <div class="header">
+        <!-- මෙහි ඔබේ ලෝගෝ පින්තූරයේ ලින්ක් එක දාන්න -->
+        <img src="https://via.placeholder.com/120x50?text=My+Logo" alt="Logo" class="logo" id="myLogo">
+        
+        <select class="dropdown" id="itemSelect" onchange="showItemDetails()">
+            <option value="">-- භාණ්ඩයක් තෝරන්න --</option>
+            <option value="item1">කරපිංචා කුඩු (Curry Leaves Powder)</option>
+            <option value="item2">මුං ඇට පිටි (Mung Bean Flour)</option>
+            <option value="item3">කුරුඳු කුඩු (Cinnamon Powder)</option>
+        </select>
+    </div>
+
+    <!-- 2. අයිතමයේ පින්තූරය, ගුණ සහ පාවිච්චි කරන ආකාරය පෙන්වන තැන -->
+    <div class="container">
+        <div class="preview-card">
+            <img id="itemImage" class="preview-img" src="" alt="Item Preview">
+            <div id="itemContent" class="description">
+                කරුණාකර ඉහත ඩ්‍රොප් ඩවුන් එකෙන් ඔබට අවශ්‍ය භාණ්ඩය තෝරන්න.
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. QR Code එක (අවශ්‍ය නම් වෙනත් අරමුණකට හෝ වෙබ් අඩවියට ලින්ක් කිරීමට) -->
+    <div class="qr-section">
+        <p style="margin: 0 0 10px 0; font-size: 14px; color: #666;">අපගේ වෙබ් අඩවියට පිවිසෙන්න</p>
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=130x130&data=https://example.com" alt="QR Code" class="qr-img">
+    </div>
+
+    <script>
+        // මෙහි ඔබේ භාණ්ඩවල විස්තර, ගුණ සහ පාවිච්චි කරන ආකාරය වෙනස් කරගත හැක
+        const itemsData = {
+            item1: {
+                image: "https://via.placeholder.com/500x250?text=Curry+Leaves+Powder",
+                title: "කරපිංචා කුඩු (Curry Leaves Powder)",
+                benefits: "ගුණ: හිසකෙස් වැටීම පාලනය කරයි, කොණ්ඩය කළු පැහැ ගැන්වීමට උදව් වේ, දියවැඩියාව පාලනයට ගුණදායකය.",
+                usage: "භාවිතා කරන ආකාරය: උදෑසන හිස් බඩට මී පැණි සමඟ තේ හැන්දක් පානය කරන්න. නැතහොත් දෛනික ආහාර වේලට එකතු කරගත හැක."
+            },
+            item2: {
+                image: "https://via.placeholder.com/500x250?text=Mung+Bean+Flour",
+                title: "මුං ඇට පිටි (Mung Bean Flour)",
+                benefits: "ගුණ: ශරීරයේ ශක්තිය වර්ධනය කරයි, පෝෂ්‍ය පදාර්ථවලින් අනූනයි, දරුවන්ට සහ වැඩිහිටියන්ට ඉතා ගුණය.",
+                usage: "භාවිතා කරන ආකාරය: කිරි හෝ උණුසුම් වතුර සමඟ පේස්ට් එකක් සේ සාදා පානය කරන්න, නැතහොත් කැඳ සෑදීමට භාවිතා කරන්න."
+            },
+            item3: {
+                image: "https://via.placeholder.com/500x250?text=Cinnamon+Powder",
+                title: "කුරුඳු කුඩු (Cinnamon Powder)",
+                benefits: "ගුණ: රුධිරගත සීනි මට්ටම පාලනය කරයි, ප්‍රතිඔක්සිකාරක වලින් පොහොසත් අතර ප්‍රතිශක්තිය වැඩි කරයි.",
+                usage: "භාවිතා කරන ආකාරය: උණු වතුර කෝප්පයකට කුඩු ස්වල්පයක් සහ මී පැණි ස්වල්පයක් එකතු කර රාත්‍රී නින්දට පෙර පානය කරන්න."
+            }
+        };
+
+        function showItemDetails() {
+            const selectedValue = document.getElementById("itemSelect").value;
+            const imgElement = document.getElementById("itemImage");
+            const contentElement = document.getElementById("itemContent");
+
+            if (selectedValue && itemsData[selectedValue]) {
+                const data = itemsData[selectedValue];
+                imgElement.src = data.image;
+                imgElement.style.display = "block";
+                
+                contentElement.innerHTML = `
+                    <div class="info-title">${data.title}</div>
+                    <div class="section-heading">🌱 විශේෂ ගුණ:</div>
+                    <div>${data.benefits}</div>
+                    <div class="section-heading">🥄 භාවිතා කරන ආකාරය:</div>
+                    <div>${data.usage}</div>
+                `;
+            } else {
+                imgElement.style.display = "none";
+                contentElement.innerHTML = "කරුණාකර ඉහත ඩ්‍රොප් ඩවුන් එකෙන් ඔබට අවශ්‍ය භාණ්ඩය තෝරන්න.";
+            }
+        }
+    </script>
+
+</body>
+</html>
